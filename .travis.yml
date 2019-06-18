@@ -6,13 +6,13 @@ before_install:
   - docker build -t briandav22/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run briandav22/react-test npm run test -- --coverage
+  - docker run briandav22/react-test npm test -- --coverage
 
 after_sucess:
-  - docker build -t briandav22/multi-client ./client  
-  - docker build -t briandav22/multi-nginx ./nginx 
+  - docker build -t briandav22/multi-client ./client
+  - docker build -t briandav22/multi-nginx ./nginx
   - docker build -t briandav22/multi-server ./server
-  - docker build -t briandav22/multi-worker ./worker  
+  - docker build -t briandav22/multi-worker ./worker
   #Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
@@ -21,4 +21,3 @@ after_sucess:
   - docker push briandav22/multi-nginx
   - docker push briandav22/multi-server
   - docker push briandav22/multi-worker
-
