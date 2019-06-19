@@ -23,6 +23,7 @@ after_sucess:
   - docker push briandav22/multi-worker
 
 deploy:
+  skip_cleanup: true
   provider: elasticbeanstalk
   region: us-east-2
   app: multi-docker
